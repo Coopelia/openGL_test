@@ -66,16 +66,45 @@ float vertices[] =
 glm::vec3 cubePositions[] =
 {
 	glm::vec3(0.0f, 0.0f, 0.0f),
-	glm::vec3(2.0f, 5.0f, -15.0f),
-	glm::vec3(-1.5f, -2.2f, -2.5f),
-	glm::vec3(-3.8f, -2.0f, -12.3f),
-	glm::vec3(2.4f, -0.4f, -3.5f),
-	glm::vec3(-1.7f, 3.0f, -7.5f),
-	glm::vec3(1.3f, -2.0f, -2.5f),
-	glm::vec3(1.5f, 2.0f, -2.5f),
-	glm::vec3(1.5f, 0.2f, -1.5f),
-	glm::vec3(-1.3f, 1.0f, -1.5f)
+	glm::vec3(0.0f, 0.0f, 0.0f),
+	glm::vec3(0.0f, 0.0f, 0.0f),
+	glm::vec3(0.0f, 0.0f, 0.0f),
+	glm::vec3(0.0f, 0.0f, 0.0f),
+	glm::vec3(0.0f, 0.0f, 0.0f),
+	glm::vec3(0.0f, 0.0f, 0.0f),
+	glm::vec3(0.0f, 0.0f, 0.0f),
+	glm::vec3(0.0f, 0.0f, 0.0f)
 };
+
+glm::vec3 cubeScale = glm::vec3(1.0f, 1.0f, 1.0f);
+float cubeAngel = 0.0f;
+float cubeRotation = 0.0f;
+
+int fram = 0;//第几帧
+bool isPlay = false;
+
+void PlayAnimate()
+{
+	fram++;
+	if (fram > 50)
+		fram = 50;
+	if (fram < 50)
+	{
+		for (int i = 1; i < 9; i++)
+		{
+			cubePositions[i].x += 0.1 * cos(0.25 * i * 3.1415926);
+			cubePositions[i].z += 0.1 * sin(0.25 * i * 3.1415926);
+		}
+		cubeScale.x += 0.01f;
+		cubeScale.y += 0.01f;
+		cubeScale.z += 0.01f;
+	}
+	else
+	{
+		cubeAngel += 1.0f;
+		cubeRotation += 1.0f;
+	}
+}
 
 float deltaTime = 0.0f;  //两帧之间的间隔时间
 float lastFrame = 0.0f;  //上一帧绘制的时间
@@ -212,26 +241,30 @@ int main()
 		glm::mat4 view;
 		view = camera.GetViewMatrix();
 		lamp_shader.setMat4("view", glm::value_ptr(view));
+		
+		if(isPlay)
+			PlayAnimate();
 
 		glBindVertexArray(VAO);
-		for (int i = 0; i < 10; ++i)
+		for (int i = 0; i < 9; ++i)
 		{
 			//模型矩阵
 			glm::mat4 model;
-			model = glm::translate(model, cubePositions[i]);
-			float angle = 20.0f * i;
-			model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+			if (i == 0)
+			{
+				model = glm::translate(model, cubePositions[0]);
+				model = glm::rotate(model, glm::radians(cubeAngel), glm::vec3(0, 1, 0));
+			}
+			else
+			{
+				model = glm::translate(model, cubePositions[i] - cubePositions[i - 1]);
+				//model = glm::rotate(model, glm::radians(cubeRotation), glm::vec3(0, 1, 0));
+				model = glm::rotate(model, glm::radians(cubeAngel), glm::vec3(0, 1, 0));
+				//model = glm::scale(model, cubeScale);
+			}
 			lamp_shader.setMat4("model", glm::value_ptr(model));
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 		}
-
-		////外壳
-		//glm::mat4 model2;
-		//model2 = glm::translate(model2, glm::vec3(-5.0f, 1.0f, -5.0f));
-		////model2 = glm::rotate(model2, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-		//model2 = glm::scale(model2, glm::vec3(2.0, 2.0, 2.0));
-		//lamp_shader.setMat4("model", glm::value_ptr(model2));
-		//glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		//摄像机
 		glm::mat4 model3;
@@ -295,6 +328,12 @@ void processInput(GLFWwindow* window)
 
 	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
 		light_specular -= 0.1;
+
+	if (glfwGetKey(window, GLFW_KEY_P) ==	GLFW_PRESS)
+		isPlay = true;
+
+	if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
+		isPlay = false;
 
 	float xoffset = 0, yoffset = 0;
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
