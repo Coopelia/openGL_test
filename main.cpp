@@ -78,7 +78,6 @@ glm::vec3 cubePositions[] =
 
 glm::vec3 cubeScale = glm::vec3(1.0f, 1.0f, 1.0f);
 float cubeAngel = 0.0f;
-float cubeRotation = 0.0f;
 
 int fram = 0;//第几帧
 bool isPlay = false;
@@ -88,21 +87,17 @@ void PlayAnimate()
 	fram++;
 	if (fram > 50)
 		fram = 50;
-	if (fram < 50)
+	if (fram < 50) //前50帧向外发散
 	{
 		for (int i = 1; i < 9; i++)
 		{
 			cubePositions[i].x += 0.1 * cos(0.25 * i * 3.1415926);
 			cubePositions[i].z += 0.1 * sin(0.25 * i * 3.1415926);
 		}
-		cubeScale.x += 0.01f;
-		cubeScale.y += 0.01f;
-		cubeScale.z += 0.01f;
 	}
-	else
+	else //后面一直做旋转
 	{
 		cubeAngel += 1.0f;
-		cubeRotation += 1.0f;
 	}
 }
 
@@ -258,9 +253,7 @@ int main()
 			else
 			{
 				model = glm::translate(model, cubePositions[i] - cubePositions[i - 1]);
-				//model = glm::rotate(model, glm::radians(cubeRotation), glm::vec3(0, 1, 0));
 				model = glm::rotate(model, glm::radians(cubeAngel), glm::vec3(0, 1, 0));
-				//model = glm::scale(model, cubeScale);
 			}
 			lamp_shader.setMat4("model", glm::value_ptr(model));
 			glDrawArrays(GL_TRIANGLES, 0, 36);
