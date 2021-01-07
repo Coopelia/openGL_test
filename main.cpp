@@ -244,7 +244,7 @@ int main()
 		for (int i = 0; i < 9; ++i)
 		{
 			//Ä£ÐÍ¾ØÕó
-			glm::mat4 model;
+			glm::mat4 model=glm::mat4(1.0f);
 			if (i == 0)
 			{
 				model = glm::translate(model, cubePositions[0]);

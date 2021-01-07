@@ -1,25 +1,25 @@
 ﻿  main.cpp
+D:\VSprojects\3dcg_work\main.cpp(94,57): warning C4244: “+=”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
 D:\VSprojects\3dcg_work\main.cpp(95,57): warning C4244: “+=”: 从“double”转换到“T”，可能丢失数据
           with
           [
               T=float
           ]
-D:\VSprojects\3dcg_work\main.cpp(96,57): warning C4244: “+=”: 从“double”转换到“T”，可能丢失数据
-          with
-          [
-              T=float
-          ]
-D:\VSprojects\3dcg_work\main.cpp(217,22): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-D:\VSprojects\3dcg_work\main.cpp(353,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-D:\VSprojects\3dcg_work\main.cpp(354,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-D:\VSprojects\3dcg_work\main.cpp(358,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-D:\VSprojects\3dcg_work\main.cpp(359,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-D:\VSprojects\3dcg_work\main.cpp(360,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-D:\VSprojects\3dcg_work\main.cpp(361,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-D:\VSprojects\3dcg_work\main.cpp(369,28): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+D:\VSprojects\3dcg_work\main.cpp(212,22): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\VSprojects\3dcg_work\main.cpp(346,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+D:\VSprojects\3dcg_work\main.cpp(347,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+D:\VSprojects\3dcg_work\main.cpp(351,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\VSprojects\3dcg_work\main.cpp(352,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\VSprojects\3dcg_work\main.cpp(353,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+D:\VSprojects\3dcg_work\main.cpp(354,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+D:\VSprojects\3dcg_work\main.cpp(362,28): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
   正在生成代码
-  2 of 445 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+  1 of 445 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    8 functions had inline decision re-evaluated but remain unchanged
+    11 functions had inline decision re-evaluated but remain unchanged
   已完成代码的生成
   3dcg_work.vcxproj -> D:\VSprojects\3dcg_work\Release\3dcg_work.exe
